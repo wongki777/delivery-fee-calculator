@@ -1,1 +1,1 @@
-# react-delivery-fee-calculator
+# delivery-fee-calculator
