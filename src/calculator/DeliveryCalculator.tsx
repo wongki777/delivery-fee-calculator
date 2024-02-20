@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 export default function DeliveryCalculator() {
-    const [input, setCartInput] = useState({ 
-        cartValue: 0, 
-        deliveryDistance: 0, 
-        numberOfItems: 0, 
+    const [input, setCartInput] = useState({
+        cartValue: 0,
+        deliveryDistance: 0,
+        numberOfItems: 0,
         orderTime: ''
     });
 
@@ -14,14 +14,14 @@ export default function DeliveryCalculator() {
 
     const calculateFee = (index: any) => {
         let fee = 0;
-        // If the cart value is less than 10€, a small order surcharge is added to the delivery price. 
+        // If the cart value is less than 10€, a small order surcharge is added to the delivery price.
         // The surcharge is the difference between the cart value and 10€.
         if (input.cartValue < 10) {
             fee = 10 - input.cartValue;
         }
 
-        // A delivery fee for the first 1000 meters (=1km) is 2€. 
-        // If the delivery distance is longer than that, 1€ is added for every additional 500 meters that the courier needs to travel before reaching the destination. 
+        // A delivery fee for the first 1000 meters (=1km) is 2€.
+        // If the delivery distance is longer than that, 1€ is added for every additional 500 meters that the courier needs to travel before reaching the destination.
         // Even if the distance would be shorter than 500 meters, the minimum fee is always 1€.
         let distancePer500m = Math.ceil(input.deliveryDistance / 500); // rounding up
         if (distancePer500m > 2) { // If distance is greater than 1000m
@@ -55,12 +55,12 @@ export default function DeliveryCalculator() {
         }
 
         // The delivery fee can never be more than 15€, including possible surcharges.
-        if (fee > 15) { 
+        if (fee > 15) {
             fee = 15;
         }
 
         // The delivery is free (0€) when the cart value is equal or more than 200€.
-        if (input.cartValue >= 200) { 
+        if (input.cartValue >= 200) {
             fee = 0;
         }
         document.getElementById("finalOutput")!.innerHTML = 'Delivery Price: €' + fee.toFixed(2);
@@ -71,7 +71,7 @@ export default function DeliveryCalculator() {
         <div id="container">
             <div id="grid">
                 <div id="header">
-                <h2>Wolt Delivery Fee Calculator</h2>
+                <h2>Delivery Fee Calculator</h2>
                 </div>
 
                 <div id="label-value">
@@ -79,7 +79,7 @@ export default function DeliveryCalculator() {
                 </div>
 
                 <div id="input-value">
-                    <input 
+                    <input
                     type="number"
                     id="cartValue"
                     placeholder="€"
@@ -111,8 +111,8 @@ export default function DeliveryCalculator() {
                 </div>
 
                 <div id="input-quantity">
-                    <input 
-                    type="number"  
+                    <input
+                    type="number"
                     id="numberOfItems"
                     placeholder="quantity"
                     name="numberOfItems"
